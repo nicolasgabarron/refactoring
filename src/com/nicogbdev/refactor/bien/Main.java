@@ -1,5 +1,8 @@
 package com.nicogbdev.refactor.bien;
 
+import com.nicogbdev.refactor.bien.enums.DniType;
+import com.nicogbdev.refactor.bien.models.DNI;
+
 class  Main
 {
     public static void main(String args[])

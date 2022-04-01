@@ -1,4 +1,7 @@
-package com.nicogbdev.refactor.bien;
+package com.nicogbdev.refactor.bien.models;
+
+import com.nicogbdev.refactor.bien.enums.CifLastCharType;
+import com.nicogbdev.refactor.bien.enums.DniType;
 
 import java.util.Date;
 import java.util.regex.Matcher;
