@@ -1,2 +1,4 @@
-package com.nicogbdev.refactor.bien.models;public class IdentificationDocument {
+package com.nicogbdev.refactor.bien.models;
+
+public class IdentificationDocument {
 }

@@ -1,2 +1,4 @@
-package com.nicogbdev.refactor.bien.models;public class NIF {
+package com.nicogbdev.refactor.bien.models;
+
+public class NIF extends IdentificationDocument{
 }
