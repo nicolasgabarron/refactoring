@@ -1,6 +1,6 @@
 package com.nicogbdev.refactor.bien;
 
-public enum TIPODNI {
+public enum DniType {
     DNI,
     NIE,
     CIF

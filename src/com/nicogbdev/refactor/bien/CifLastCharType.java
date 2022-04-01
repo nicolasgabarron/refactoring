@@ -1,6 +1,6 @@
 package com.nicogbdev.refactor.bien;
 
-public enum TipoUltCaracter
+public enum CifLastCharType
 {
     LETRA,
     NUMERO,

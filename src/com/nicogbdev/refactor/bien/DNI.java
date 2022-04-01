@@ -7,12 +7,12 @@ import java.util.regex.Pattern;
 public class DNI {
 
     // PROPIEDADES.
-    public TIPODNI documentType;        // Tipo del documento (DNI, NIE, CIF).
+    public DniType documentType;        // Tipo del documento (DNI, NIE, CIF).
     public String dniNumberWithLetter;  // Número de documento con letra incluida (ej. 12345678A)
     public Date expirationDate;         // Fecha de validez del documento.
 
     // construye un DNI
-    public DNI(TIPODNI type, String dniNumberWithLetter, Date expirationDate) {
+    public DNI(DniType type, String dniNumberWithLetter, Date expirationDate) {
         this.documentType = type;
         this.dniNumberWithLetter = dniNumberWithLetter;
         this.expirationDate = expirationDate;
@@ -66,24 +66,24 @@ public class DNI {
                     final char lastCharacterCif = cifUpperCase.charAt(cifUpperCase.length() - 1);
 
 
-                    TipoUltCaracter lastCharacterType;
+                    CifLastCharType lastCharacterType;
 
                     // si empiezo por P,Q, S, K o W la última firstLetterNie tiene que ser una LETRA
                     if (firstCharacterCif == 'P' || firstCharacterCif == 'Q' || firstCharacterCif == 'S' || firstCharacterCif == 'K' || firstCharacterCif == 'W') {
-                        lastCharacterType = TipoUltCaracter.LETRA;
+                        lastCharacterType = CifLastCharType.LETRA;
                         if (!(lastCharacterCif >= 'A' && lastCharacterCif <= 'Z')) {
                             return 0; // no es una firstLetterNie
                         }
                         // si empiezo por A, B, E o H la última firstLetterNie tiene que ser un número
                     } else if (firstCharacterCif == 'A' || firstCharacterCif == 'B' || firstCharacterCif == 'E'
                             || firstCharacterCif == 'H') {
-                        lastCharacterType = TipoUltCaracter.NUMERO;
+                        lastCharacterType = CifLastCharType.NUMERO;
                         if (!(lastCharacterCif >= '0' && lastCharacterCif <= '9')) {
                             return 0; // no es un número --> casco!
                         }
                         // en otro caso la última firstLetterNie puede ser cualquier cosa
                     } else {
-                        lastCharacterType = TipoUltCaracter.AMBOS;
+                        lastCharacterType = CifLastCharType.AMBOS;
                     }
 
 
@@ -119,7 +119,7 @@ public class DNI {
                     final char controlCharacter = "JABCDEFGHI".charAt(position);
 
                     // con el número de control calculado validamos
-                    if (lastCharacterType == TipoUltCaracter.NUMERO) {
+                    if (lastCharacterType == CifLastCharType.NUMERO) {
 
                         final Integer lastCharacter = Integer.parseInt(Character
                                 .toString(lastCharacterCif));
@@ -128,7 +128,7 @@ public class DNI {
                             return 0; // NOK
                         }
 
-                    } else if (lastCharacterType == TipoUltCaracter.LETRA) {
+                    } else if (lastCharacterType == CifLastCharType.LETRA) {
                         if (controlCharacter != lastCharacterCif) {
                             return 0; // NOK
                         }
