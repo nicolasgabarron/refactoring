@@ -1,10 +1,12 @@
 package com.nicogbdev.refactor.bien.utils;
 
 import com.nicogbdev.refactor.bien.interfaces.IdentificationValidate;
+import com.nicogbdev.refactor.bien.models.IdentificationDocument;
 
 public class CifValidator implements IdentificationValidate {
-    @Override
-    public void validate() {
 
+    @Override
+    public boolean validate(IdentificationDocument id) {
+        return false;
     }
 }

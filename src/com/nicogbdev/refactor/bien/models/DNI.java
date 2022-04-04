@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class DNI {
+public class DNI extends IdentificationDocument {
 
     // PROPIEDADES.
     private DniType documentType;        // Tipo del documento (DNI, NIE, CIF).
@@ -30,7 +30,6 @@ public class DNI {
 
         switch (this.documentType) {
             case DNI:
-
                 // posibles letras en un DNI
                 String dniChars = "TRWAGMYFPDXBNJZSQVHLCKE";
                 // los primeros 8 caracteres son números
@@ -246,4 +245,5 @@ public class DNI {
     public void setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
     }
+
 }
