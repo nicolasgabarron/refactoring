@@ -12,13 +12,17 @@ public class DNI extends IdentificationDocument {
     // PROPIEDADES.
     private String dniNumberWithLetter;  // Número de documento con letra incluida (ej. 12345678A)
     private Date expirationDate;         // Fecha de validez del documento.
+    private int dniNumber;               // Número del DNI (sin letra).
+    private char dniLetter;              // Letra del DNI.
 
     // construye un DNI
     public DNI(String dniNumberWithLetter, Date expirationDate) {
         this.dniNumberWithLetter = dniNumberWithLetter;
         this.expirationDate = expirationDate;
+        this.setDniNumber(); // En caso de tener formato incorrecto, esta sentencia daría error.
+        this.setDniLetter();
     }
-    
+
     // Getters y Setters.
 
     public String getDniNumberWithLetter() {
@@ -37,4 +41,19 @@ public class DNI extends IdentificationDocument {
         this.expirationDate = expirationDate;
     }
 
+    public int getDniNumber() {
+        return dniNumber;
+    }
+
+    public void setDniNumber() {
+        this.dniNumber = Integer.parseInt(this.dniNumberWithLetter.trim().replaceAll(" ", "").substring(0, 8));
+    }
+
+    public char getDniLetter() {
+        return dniLetter;
+    }
+
+    public void setDniLetter() {
+        this.dniLetter = this.dniNumberWithLetter.charAt(8);
+    }
 }

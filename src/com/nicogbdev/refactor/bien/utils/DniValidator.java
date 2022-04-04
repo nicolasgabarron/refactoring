@@ -30,13 +30,21 @@ public class DniValidator implements IdentificationValidate {
         return dniValidator;
     }
 
+    /**
+     * Método que valida un DNI.
+     * Para que sea válido tendrá tener una longitud válida y además tener la letra que le
+     * corresponde en función a su número.
+     *
+     * @param id DNI a validar.
+     * @return TRUE: Es válido. / FALSE: No es válido.
+     */
     @Override
     public boolean validate(IdentificationDocument id) {
         // Casteo el documento de identidad para convertirlo en un DNI.
         DNI dni = (DNI) id;
 
         try {
-            return isDNILengthValid(dni) && isDNILetterCorrect(dni); // Si se cumplen ambas condiciones, es CORRECTO. Si no, es INCORRECTO.
+            return isDNILengthValid(dni) && isDniLetterValid(dni); // Si se cumplen ambas condiciones, es CORRECTO. Si no, es INCORRECTO.
         } catch (InvalidDniException e) {
             return false; // Algo ha ido mal, por lo tanto DNI INCORRECTO.
         } catch (Exception e) {
@@ -66,44 +74,29 @@ public class DniValidator implements IdentificationValidate {
     }
 
     /**
-     * Método que obtiene la letra del DNI.
+     * Método que obtiene la letra del DNI y comprueba que sea válida.
      * También comprueba que dicha letra sea correcta y esté contemplado en las posibles letras
      * que puede tener un DNI.
      * <p>
      * En caso de no estar contemplada, será un DNI incorrecto y lanzo excepción propia informado de ello.
      *
-     * @param dni DNI sobre el que queremos obtener la letra.
-     * @return Letra del DNI.
+     * @param dni DNI sobre el que queremos validar la letra.
+     * @return TRUE: Es válida. / FALSE: No es válida.
      * @throws InvalidDniException Informa de que el DNI es incorrecto debido a que la letra no está
      *                             contenida dentro de las posibles letras que puede tener un DNI.
      */
-    private char getDniLetter(DNI dni) throws InvalidDniException {
-        char letra = dni.getDniNumberWithLetter().charAt(8);
+    private boolean isDniLetterValid(DNI dni) throws InvalidDniException {
+        char letter = dni.getDniLetter();
 
-        if (!dniCharacters.contains(letra)) {
+        if (!dniCharacters.contains(letter)) {
             throw new InvalidDniException("Formato inválido. La letra no coincide con las establecidas.");
         }
 
-        return letra;
-    }
+        char calculatedLetter = calculateLetter(dni);
 
-    /**
-     * Método que obtiene la parte numérica de un DNI.
-     * Comprueba que se puede convertir a número los 8 primeros dígitos. En caso de que el formato no sea correcto,
-     * o que haya alguna letra, se lanzará la excepción propia del método "parseInt".
-     *
-     * En caso exittoso, devolverá en tipo "int" el número del DNI.
-     *
-     * @param dni DNI sobre el que queremos conseguir la parte numérica.
-     * @return Parte numérica del DNI.
-     * @throws NumberFormatException Infomra de que no se ha podido obtener la parte entera del DNI por un problema
-     *                               de formato.
-     */
-    private int getDniNumber(DNI dni) throws NumberFormatException {
-        return Integer.parseInt(dni.getDniNumberWithLetter()
-                .trim()
-                .replaceAll(" ", "")
-                .substring(0, 8));
+        if (calculatedLetter == letter) return true;
+
+        return false;
     }
 
     /**
@@ -113,7 +106,7 @@ public class DniValidator implements IdentificationValidate {
      * @return Letra del DNI que debería corresponder con la propia del DNI.
      */
     private char calculateLetter(DNI dni) {
-        int numericPartDni = getDniNumber(dni);
+        int numericPartDni = dni.getDniNumber();
 
         int calculatedIndex = numericPartDni % 23;
 
@@ -134,22 +127,6 @@ public class DniValidator implements IdentificationValidate {
         if (dni.getDniNumberWithLetter().length() == 9) result = true;
 
         return result;
-    }
-
-    /**
-     * Método que hace uso de diferentes métodos de esta propia clase para comprobar si la
-     * letra del DNI es correcta o no.
-     *
-     * @param dni DNI sobre el que se quiere comprobar si la letra es correcta.
-     * @return TRUE: Letra correcta / FALSE: Letra incorrecta.
-     * @throws InvalidDniException Excepción que se lanza si el DNI no es válido.
-     */
-    private boolean isDNILetterCorrect(DNI dni) throws InvalidDniException {
-        char calculatedLetter = calculateLetter(dni);
-
-        if (calculatedLetter == getDniLetter(dni)) return true;
-
-        return false;
     }
 
 }
