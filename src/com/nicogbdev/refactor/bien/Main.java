@@ -1,7 +1,10 @@
 package com.nicogbdev.refactor.bien;
 
 import com.nicogbdev.refactor.bien.enums.DniType;
+import com.nicogbdev.refactor.bien.models.CIF;
 import com.nicogbdev.refactor.bien.models.DNI;
+import com.nicogbdev.refactor.bien.models.IdentificationDocument;
+import com.nicogbdev.refactor.bien.utils.CifValidator;
 import com.nicogbdev.refactor.bien.utils.DniValidator;
 
 class  Main
@@ -10,6 +13,7 @@ class  Main
     {
         // Instancias de Validadores.
         DniValidator dniValidator = DniValidator.getInstance();
+        CifValidator cifValidator = CifValidator.getInstance();
 
         System.out.println("=====================");
         System.out.println("Vamos a refactorizar!");
@@ -36,13 +40,13 @@ class  Main
         System.out.println( "NIE " + nieIncorrecto.getDniNumberWithLetter() + " es: " + esValidoNieIncorrecto.toString());
 
         // creamos un CIF correcto
-        DNI cifCorrecto = new DNI(DniType.CIF, "W9696294I", null);
-        Boolean esValidoCIF = (cifCorrecto.validarDNI() == 1);
-        System.out.println( "CIF " + cifCorrecto.getDniNumberWithLetter() + " es: " + esValidoCIF.toString());
+        CIF cifCorrecto = new CIF("W9696294I", null);
+        Boolean esValidoCIF = cifValidator.validate(cifCorrecto);
+        System.out.println( "CIF " + cifCorrecto.getCifNumberWithLetters() + " es: " + esValidoCIF.toString());
 
         // creamos un CIF incorrecto
-        DNI cifIncorrecto = new DNI(DniType.CIF, "W9696294A", null);
-        Boolean esValidoCifIncorrecto = (cifIncorrecto.validarDNI() == 1);
-        System.out.println( "NIE " + cifIncorrecto.getDniNumberWithLetter() + " es: " + esValidoCifIncorrecto.toString());
+        CIF cifIncorrecto = new CIF("W9696294A", null);
+        Boolean esValidoCifIncorrecto = cifValidator.validate(cifIncorrecto);
+        System.out.println( "CIF " + cifIncorrecto.getCifNumberWithLetters() + " es: " + esValidoCifIncorrecto.toString());
     }
 }

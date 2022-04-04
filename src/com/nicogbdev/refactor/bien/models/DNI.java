@@ -1,6 +1,6 @@
 package com.nicogbdev.refactor.bien.models;
 
-import com.nicogbdev.refactor.bien.enums.CifLastCharType;
+import com.nicogbdev.refactor.bien.enums.CIFLastCharType;
 import com.nicogbdev.refactor.bien.enums.DniType;
 
 import java.util.Date;
@@ -68,24 +68,24 @@ public class DNI extends IdentificationDocument {
                     final char lastCharacterCif = cifUpperCase.charAt(cifUpperCase.length() - 1);
 
 
-                    CifLastCharType lastCharacterType;
+                    CIFLastCharType lastCharacterType;
 
                     // si empiezo por P,Q, S, K o W la última firstLetterNie tiene que ser una LETRA
                     if (firstCharacterCif == 'P' || firstCharacterCif == 'Q' || firstCharacterCif == 'S' || firstCharacterCif == 'K' || firstCharacterCif == 'W') {
-                        lastCharacterType = CifLastCharType.LETRA;
+                        lastCharacterType = CIFLastCharType.LETTER;
                         if (!(lastCharacterCif >= 'A' && lastCharacterCif <= 'Z')) {
                             return 0; // no es una firstLetterNie
                         }
                         // si empiezo por A, B, E o H la última firstLetterNie tiene que ser un número
                     } else if (firstCharacterCif == 'A' || firstCharacterCif == 'B' || firstCharacterCif == 'E'
                             || firstCharacterCif == 'H') {
-                        lastCharacterType = CifLastCharType.NUMERO;
+                        lastCharacterType = CIFLastCharType.NUMBER;
                         if (!(lastCharacterCif >= '0' && lastCharacterCif <= '9')) {
                             return 0; // no es un número --> casco!
                         }
                         // en otro caso la última firstLetterNie puede ser cualquier cosa
                     } else {
-                        lastCharacterType = CifLastCharType.AMBOS;
+                        lastCharacterType = CIFLastCharType.BOTH;
                     }
 
 
@@ -121,7 +121,7 @@ public class DNI extends IdentificationDocument {
                     final char controlCharacter = "JABCDEFGHI".charAt(position);
 
                     // con el número de control calculado validamos
-                    if (lastCharacterType == CifLastCharType.NUMERO) {
+                    if (lastCharacterType == CIFLastCharType.NUMBER) {
 
                         final Integer lastCharacter = Integer.parseInt(Character
                                 .toString(lastCharacterCif));
@@ -130,7 +130,7 @@ public class DNI extends IdentificationDocument {
                             return 0; // NOK
                         }
 
-                    } else if (lastCharacterType == CifLastCharType.LETRA) {
+                    } else if (lastCharacterType == CIFLastCharType.LETTER) {
                         if (controlCharacter != lastCharacterCif) {
                             return 0; // NOK
                         }
