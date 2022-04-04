@@ -23,12 +23,12 @@ class  Main
         System.out.println("=====================");
 
         // creamos un DNI correcto
-        DNI dniCorrecto = new DNI(DniType.DNI, "11111111H", null);
+        DNI dniCorrecto = new DNI("11111111H", null);
         Boolean esValido = dniValidator.validate(dniCorrecto);
         System.out.println( "DNI " + dniCorrecto.getDniNumberWithLetter() + " es: " + esValido.toString());
 
         // creamos un DNI incorrecto
-        DNI dniIncorrecto01 = new DNI(DniType.DNI, "24324356A", null);
+        DNI dniIncorrecto01 = new DNI("24324356A", null);
         Boolean esValido01 = dniValidator.validate(dniIncorrecto01);
         System.out.println( "DNI " + dniIncorrecto01.getDniNumberWithLetter() + " es: " + esValido01.toString());
 
