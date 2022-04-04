@@ -4,8 +4,10 @@ import com.nicogbdev.refactor.bien.enums.DniType;
 import com.nicogbdev.refactor.bien.models.CIF;
 import com.nicogbdev.refactor.bien.models.DNI;
 import com.nicogbdev.refactor.bien.models.IdentificationDocument;
+import com.nicogbdev.refactor.bien.models.NIE;
 import com.nicogbdev.refactor.bien.utils.CifValidator;
 import com.nicogbdev.refactor.bien.utils.DniValidator;
+import com.nicogbdev.refactor.bien.utils.NieValidator;
 
 class  Main
 {
@@ -14,6 +16,7 @@ class  Main
         // Instancias de Validadores.
         DniValidator dniValidator = DniValidator.getInstance();
         CifValidator cifValidator = CifValidator.getInstance();
+        NieValidator nieValidator = NieValidator.getInstance();
 
         System.out.println("=====================");
         System.out.println("Vamos a refactorizar!");
@@ -30,14 +33,14 @@ class  Main
         System.out.println( "DNI " + dniIncorrecto01.getDniNumberWithLetter() + " es: " + esValido01.toString());
 
         // creamos un NIE correcto
-        DNI nieCorrecto = new DNI(DniType.NIE, "X0932707B", null);
-        Boolean esValidoNie = (nieCorrecto.validarDNI() == 1);
-        System.out.println( "NIE " + nieCorrecto.getDniNumberWithLetter() + " es: " + esValidoNie.toString());
+        NIE nieCorrecto = new NIE("X0932707B", null);
+        Boolean esValidoNie = nieValidator.validate(nieCorrecto);
+        System.out.println( "NIE " + nieCorrecto.getNieNumberWithLetters() + " es: " + esValidoNie.toString());
 
         // creamos un NIE incorrecto
-        DNI nieIncorrecto = new DNI(DniType.NIE, "Z2691139Z", null);
-        Boolean esValidoNieIncorrecto = (nieIncorrecto.validarDNI() == 1);
-        System.out.println( "NIE " + nieIncorrecto.getDniNumberWithLetter() + " es: " + esValidoNieIncorrecto.toString());
+        NIE nieIncorrecto = new NIE("Z2691139Z", null);
+        Boolean esValidoNieIncorrecto = nieValidator.validate(nieIncorrecto);
+        System.out.println( "NIE " + nieIncorrecto.getNieNumberWithLetters() + " es: " + esValidoNieIncorrecto.toString());
 
         // creamos un CIF correcto
         CIF cifCorrecto = new CIF("W9696294I", null);
