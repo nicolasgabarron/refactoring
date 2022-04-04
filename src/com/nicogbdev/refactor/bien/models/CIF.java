@@ -7,7 +7,7 @@ public class CIF extends IdentificationDocument {
     private Date expirationDate;
 
     public CIF(String cifNumberWithLetters, Date expirationDate) {
-        this.cifNumberWithLetters = cifNumberWithLetters;
+        this.cifNumberWithLetters = cifNumberWithLetters.toUpperCase();
         this.expirationDate = expirationDate;
     }
 

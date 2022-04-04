@@ -17,7 +17,7 @@ public class DNI extends IdentificationDocument {
 
     // construye un DNI
     public DNI(String dniNumberWithLetter, Date expirationDate) {
-        this.dniNumberWithLetter = dniNumberWithLetter;
+        this.dniNumberWithLetter = dniNumberWithLetter.toUpperCase();
         this.expirationDate = expirationDate;
         this.setDniNumber(); // En caso de tener formato incorrecto, esta sentencia daría error.
         this.setDniLetter();
