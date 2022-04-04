@@ -11,7 +11,24 @@ import java.util.Arrays;
 public class DniValidator implements IdentificationValidate {
 
     // PROPIEDADES.
-    ArrayList<Character> dniCharacters = new ArrayList<>(Arrays.asList('T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E'));
+    private ArrayList<Character> dniCharacters = new ArrayList<>(Arrays.asList('T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E'));
+    private static DniValidator dniValidator;
+
+    /**
+     * Método que crea una instancia de clase en caso de no existir y la devuelve
+     * allá donde haya sido llamado el método.
+     *
+     * PATRÓN SINGLETON.
+     *
+     * @return Instancia de clase.
+     */
+    public static DniValidator getInstance(){
+        if(dniValidator == null){
+            dniValidator = new DniValidator();
+        }
+
+        return dniValidator;
+    }
 
     @Override
     public boolean validate(IdentificationDocument id) {
@@ -19,10 +36,7 @@ public class DniValidator implements IdentificationValidate {
         DNI dni = (DNI) id;
 
         try {
-            isDNILengthValid(dni); // Compruebo longitud del DNI.
-            isDNILetterCorrect(dni); // Compruebo letra del DNI.
-
-            return true; // DNI CORRECTO.
+            return isDNILengthValid(dni) && isDNILetterCorrect(dni); // Si se cumplen ambas condiciones, es CORRECTO. Si no, es INCORRECTO.
         } catch (InvalidDniException e) {
             return false; // Algo ha ido mal, por lo tanto DNI INCORRECTO.
         } catch (Exception e) {
@@ -63,7 +77,7 @@ public class DniValidator implements IdentificationValidate {
      * @throws InvalidDniException Informa de que el DNI es incorrecto debido a que la letra no está
      *                             contenida dentro de las posibles letras que puede tener un DNI.
      */
-    public char getDniLetter(DNI dni) throws InvalidDniException {
+    private char getDniLetter(DNI dni) throws InvalidDniException {
         char letra = dni.getDniNumberWithLetter().charAt(8);
 
         if (!dniCharacters.contains(letra)) {
@@ -85,7 +99,7 @@ public class DniValidator implements IdentificationValidate {
      * @throws NumberFormatException Infomra de que no se ha podido obtener la parte entera del DNI por un problema
      *                               de formato.
      */
-    public int getDniNumber(DNI dni) throws NumberFormatException {
+    private int getDniNumber(DNI dni) throws NumberFormatException {
         return Integer.parseInt(dni.getDniNumberWithLetter()
                 .trim()
                 .replaceAll(" ", "")
@@ -98,7 +112,7 @@ public class DniValidator implements IdentificationValidate {
      * @param dni DNI al cual calcular la letra.
      * @return Letra del DNI que debería corresponder con la propia del DNI.
      */
-    public char calculateLetter(DNI dni) {
+    private char calculateLetter(DNI dni) {
         int numericPartDni = getDniNumber(dni);
 
         int calculatedIndex = numericPartDni % 23;
@@ -114,7 +128,7 @@ public class DniValidator implements IdentificationValidate {
      * @param dni DNI sobre el que queremos comprobar la longitud.
      * @return TRUE: Tiene la longitud correcta / FALSE: Tiene longitud incorrecta.
      */
-    public boolean isDNILengthValid(DNI dni) {
+    private boolean isDNILengthValid(DNI dni) {
         boolean result = false;
 
         if (dni.getDniNumberWithLetter().length() == 9) result = true;
@@ -130,7 +144,7 @@ public class DniValidator implements IdentificationValidate {
      * @return TRUE: Letra correcta / FALSE: Letra incorrecta.
      * @throws InvalidDniException Excepción que se lanza si el DNI no es válido.
      */
-    public boolean isDNILetterCorrect(DNI dni) throws InvalidDniException {
+    private boolean isDNILetterCorrect(DNI dni) throws InvalidDniException {
         char calculatedLetter = calculateLetter(dni);
 
         if (calculatedLetter == getDniLetter(dni)) return true;

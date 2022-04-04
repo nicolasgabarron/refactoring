@@ -2,23 +2,27 @@ package com.nicogbdev.refactor.bien;
 
 import com.nicogbdev.refactor.bien.enums.DniType;
 import com.nicogbdev.refactor.bien.models.DNI;
+import com.nicogbdev.refactor.bien.utils.DniValidator;
 
 class  Main
 {
     public static void main(String args[])
     {
+        // Instancias de Validadores.
+        DniValidator dniValidator = DniValidator.getInstance();
+
         System.out.println("=====================");
         System.out.println("Vamos a refactorizar!");
         System.out.println("=====================");
 
         // creamos un DNI correcto
         DNI dniCorrecto = new DNI(DniType.DNI, "11111111H", null);
-        Boolean esValido = (dniCorrecto.validarDNI() == 1);
+        Boolean esValido = dniValidator.validate(dniCorrecto);
         System.out.println( "DNI " + dniCorrecto.getDniNumberWithLetter() + " es: " + esValido.toString());
 
         // creamos un DNI incorrecto
         DNI dniIncorrecto01 = new DNI(DniType.DNI, "24324356A", null);
-        Boolean esValido01 = (dniIncorrecto01.validarDNI() == 1);
+        Boolean esValido01 = dniValidator.validate(dniIncorrecto01);
         System.out.println( "DNI " + dniIncorrecto01.getDniNumberWithLetter() + " es: " + esValido01.toString());
 
         // creamos un NIE correcto
