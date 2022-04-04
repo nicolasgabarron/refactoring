@@ -7,11 +7,12 @@ import com.nicogbdev.refactor.bien.models.IdentificationDocument;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class DniValidator implements IdentificationValidate {
 
     // PROPIEDADES.
-    private ArrayList<Character> dniCharacters = new ArrayList<>(Arrays.asList('T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E'));
+    private List<Character> dniCharacters = Arrays.asList('T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E');
     private static DniValidator dniValidator;
 
     /**

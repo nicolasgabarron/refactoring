@@ -6,12 +6,13 @@ import com.nicogbdev.refactor.bien.models.NIE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class NieValidator implements IdentificationValidate {
 
     // Propiedades
-    private ArrayList<Character> lastLetterCharacters = new ArrayList<>(Arrays.asList('T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E'));
-    private ArrayList<Character> firstLetterCharacters = new ArrayList<>(Arrays.asList('X', 'Y', 'Z'));
+    private List<Character> lastLetterCharacters = Arrays.asList('T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E');
+    private List<Character> firstLetterCharacters = Arrays.asList('X', 'Y', 'Z');
     private static NieValidator nieValidator;
 
     /**

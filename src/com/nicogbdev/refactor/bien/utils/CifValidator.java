@@ -7,12 +7,14 @@ import com.nicogbdev.refactor.bien.models.IdentificationDocument;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CifValidator implements IdentificationValidate {
 
     // Propiedades.
+    private List<Character> firstCharacters = Arrays.asList('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'U', 'V', 'W');
     private CIFLastCharType cifLastCharType;
     public static CifValidator cifValidator;
 
@@ -67,8 +69,7 @@ public class CifValidator implements IdentificationValidate {
      * @return TRUE: Primera letra correcta / FALSE: Primera letra incorrecta.
      */
     private boolean isFirstLetterValid(CIF cif) {
-        ArrayList<Character> firstCharacterList = new ArrayList<>(Arrays.asList('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'U', 'V', 'W'));
-        boolean result = firstCharacterList.contains(cif.getFirstCharacter());
+        boolean result = firstCharacters.contains(cif.getFirstCharacter());
         return result;
     }
 
