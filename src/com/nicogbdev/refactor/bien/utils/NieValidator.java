@@ -59,26 +59,6 @@ public class NieValidator implements IdentificationValidate {
         return firstLetterCharacters.contains(nie.getFirstLetter());
     }
 
-
-    /**
-     * Método que asigna el número de control al NIE en función de cuál sea su dígito de control.
-     *  - X: 0.
-     *  - Y: 1.
-     *  - Z: 2.
-     * @param nie NIE al cual se quiere definir el dígito de control.
-     */
-    private void setNieControlDigit(NIE nie) {
-        if (isFirstCharacterValid(nie)) {
-            if (nie.getFirstLetter() == 'X') {
-                nie.setNieNumberWithControlDigit("0" + nie.getNumericalPart() + nie.getLastLetter());
-            } else if (nie.getFirstLetter() == 'Y') {
-                nie.setNieNumberWithControlDigit("1" + nie.getNumericalPart() + nie.getLastLetter());
-            } else if (nie.getFirstLetter() == 'Z') {
-                nie.setNieNumberWithControlDigit("2" + nie.getNumericalPart() + nie.getLastLetter());
-            }
-        }
-    }
-
     /**
      * Método que comprueba si el último caracter es válido.
      * Para que sea válido tiene que ser igual al caracter del índice calculado en función

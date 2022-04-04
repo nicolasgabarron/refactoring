@@ -6,7 +6,6 @@ import java.util.Locale;
 public class NIE extends IdentificationDocument {
     // Propiedades.
     private String nieNumberWithLetters;
-    private String nieNumberWithControlDigit;
     private Date expirationDate;
     private char firstLetter;
     private char lastLetter;
@@ -67,13 +66,5 @@ public class NIE extends IdentificationDocument {
 
     public void setNumericalPart(int numericalPart) {
         this.numericalPart = numericalPart;
-    }
-
-    public String getNieNumberWithControlDigit() {
-        return nieNumberWithControlDigit;
-    }
-
-    public void setNieNumberWithControlDigit(String nieNumberWithControlDigit) {
-        this.nieNumberWithControlDigit = nieNumberWithControlDigit;
     }
 }
