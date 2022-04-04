@@ -33,6 +33,14 @@ public class CifValidator implements IdentificationValidate {
     }
 
     /**
+     * Constructor por defecto.
+     * Lo creo privado ya que queremos que esta clase siga el patrón Singleton
+     * y por tanto no se creen instancias de la misma.
+     */
+    private CifValidator(){
+    }
+
+    /**
      * Método que al pasarle un ID (en este caso un CIF) lo valida.
      * Para ello el resultado booleano tiene que ser TRUE en todas las pruebas.
      * Pruebas que se realizan:

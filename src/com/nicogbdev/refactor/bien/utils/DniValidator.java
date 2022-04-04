@@ -31,6 +31,14 @@ public class DniValidator implements IdentificationValidate {
     }
 
     /**
+     * Constructor por defecto.
+     * Lo creo privado ya que queremos que esta clase siga el patrón Singleton
+     * y por tanto no se creen instancias de la misma.
+     */
+    private DniValidator(){
+    }
+
+    /**
      * Método que valida un DNI.
      * Para que sea válido tendrá tener una longitud válida y además tener la letra que le
      * corresponde en función a su número.

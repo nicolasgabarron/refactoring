@@ -30,6 +30,14 @@ public class NieValidator implements IdentificationValidate {
         return nieValidator;
     }
 
+    /**
+     * Constructor por defecto.
+     * Lo creo privado ya que queremos que esta clase siga el patrón Singleton
+     * y por tanto no se creen instancias de la misma.
+     */
+    private NieValidator(){
+    }
+
     @Override
     public boolean validate(IdentificationDocument id) {
         NIE nie = (NIE) id;
