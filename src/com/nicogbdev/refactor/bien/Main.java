@@ -1,6 +1,5 @@
 package com.nicogbdev.refactor.bien;
 
-import com.nicogbdev.refactor.bien.enums.DniType;
 import com.nicogbdev.refactor.bien.factories.IDValidateFactory;
 import com.nicogbdev.refactor.bien.models.CIF;
 import com.nicogbdev.refactor.bien.models.DNI;
@@ -28,31 +27,31 @@ class  Main
         // creamos un DNI correcto
         DNI dniCorrecto = new DNI("11111111H", null);
         Boolean esValido = dniValidator.validate(dniCorrecto);
-        System.out.println( "DNI " + dniCorrecto.getDniNumberWithLetter() + " es: " + esValido.toString());
+        System.out.println( "DNI " + dniCorrecto.getCompleteNumber() + " es: " + esValido.toString());
 
         // creamos un DNI incorrecto
         DNI dniIncorrecto01 = new DNI("24324356A", null);
         Boolean esValido01 = dniValidator.validate(dniIncorrecto01);
-        System.out.println( "DNI " + dniIncorrecto01.getDniNumberWithLetter() + " es: " + esValido01.toString());
+        System.out.println( "DNI " + dniIncorrecto01.getCompleteNumber() + " es: " + esValido01.toString());
 
         // creamos un NIE correcto
-        NIE nieCorrecto = new NIE("X0932707B", null);
+        IdentificationDocument nieCorrecto = new NIE("X0932707B", null);
         Boolean esValidoNie = nieValidator.validate(nieCorrecto);
-        System.out.println( "NIE " + nieCorrecto.getNieNumberWithLetters() + " es: " + esValidoNie.toString());
+        System.out.println( "NIE " + nieCorrecto.getCompleteNumber() + " es: " + esValidoNie.toString());
 
         // creamos un NIE incorrecto
-        NIE nieIncorrecto = new NIE("Z2691139Z", null);
+        IdentificationDocument nieIncorrecto = new NIE("Z2691139Z", null);
         Boolean esValidoNieIncorrecto = nieValidator.validate(nieIncorrecto);
-        System.out.println( "NIE " + nieIncorrecto.getNieNumberWithLetters() + " es: " + esValidoNieIncorrecto.toString());
+        System.out.println( "NIE " + nieIncorrecto.getCompleteNumber() + " es: " + esValidoNieIncorrecto.toString());
 
         // creamos un CIF correcto
         CIF cifCorrecto = new CIF("W9696294I", null);
         Boolean esValidoCIF = cifValidator.validate(cifCorrecto);
-        System.out.println( "CIF " + cifCorrecto.getCifNumberWithLetters() + " es: " + esValidoCIF.toString());
+        System.out.println( "CIF " + cifCorrecto.getCompleteNumber() + " es: " + esValidoCIF.toString());
 
         // creamos un CIF incorrecto
         CIF cifIncorrecto = new CIF("W9696294A", null);
         Boolean esValidoCifIncorrecto = cifValidator.validate(cifIncorrecto);
-        System.out.println( "CIF " + cifIncorrecto.getCifNumberWithLetters() + " es: " + esValidoCifIncorrecto.toString());
+        System.out.println( "CIF " + cifIncorrecto.getCompleteNumber() + " es: " + esValidoCifIncorrecto.toString());
     }
 }

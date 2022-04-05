@@ -5,35 +5,16 @@ import java.util.Locale;
 
 public class NIE extends IdentificationDocument {
     // Propiedades.
-    private String nieNumberWithLetters;
-    private Date expirationDate;
     private char firstLetter;
     private char lastLetter;
     private int numericalPart;
 
 
-    public NIE(String nieNumberWithLetters, Date expirationDate) {
-        this.nieNumberWithLetters = nieNumberWithLetters.toUpperCase();
-        this.expirationDate = expirationDate;
+    public NIE(String completeNumber, Date expirationDate) {
+        super(completeNumber, expirationDate);
         this.setFirstLetter();
         this.setLastLetter();
         this.setNumericalPart(); // En caso de no ser correcto el formato, esta instrucción dará una excepción.
-    }
-
-    public String getNieNumberWithLetters() {
-        return nieNumberWithLetters;
-    }
-
-    public void setNieNumberWithLetters(String nieNumberWithLetters) {
-        this.nieNumberWithLetters = nieNumberWithLetters;
-    }
-
-    public Date getExpirationDate() {
-        return expirationDate;
-    }
-
-    public void setExpirationDate(Date expirationDate) {
-        this.expirationDate = expirationDate;
     }
 
     public char getFirstLetter() {
@@ -41,7 +22,7 @@ public class NIE extends IdentificationDocument {
     }
 
     public void setFirstLetter() {
-        this.firstLetter = nieNumberWithLetters.charAt(0);
+        this.firstLetter = this.getCompleteNumber().charAt(0);
     }
 
     public int getNumericalPart() {
@@ -49,7 +30,7 @@ public class NIE extends IdentificationDocument {
     }
 
     public void setNumericalPart() {
-        this.numericalPart = Integer.parseInt(nieNumberWithLetters.substring(1,8));
+        this.numericalPart = Integer.parseInt(this.getCompleteNumber().substring(1,8));
     }
 
     public void setFirstLetter(char firstLetter) {
@@ -61,7 +42,7 @@ public class NIE extends IdentificationDocument {
     }
 
     public void setLastLetter() {
-        this.lastLetter = nieNumberWithLetters.charAt(nieNumberWithLetters.length()-1);
+        this.lastLetter = this.getCompleteNumber().charAt(this.getCompleteNumber().length()-1);
     }
 
     public void setNumericalPart(int numericalPart) {

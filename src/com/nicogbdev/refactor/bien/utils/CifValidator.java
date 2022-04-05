@@ -5,7 +5,6 @@ import com.nicogbdev.refactor.bien.interfaces.IdentificationValidate;
 import com.nicogbdev.refactor.bien.models.CIF;
 import com.nicogbdev.refactor.bien.models.IdentificationDocument;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -88,7 +87,7 @@ public class CifValidator implements IdentificationValidate {
         // Defino expresión REGEX que ha de cumplirse.
         Pattern pattern = Pattern.compile("[ABCDEFGHJKLMNPQRSUVW][0-9]{7}[A-Z[0-9]]{1}");
         // Creo el matcher que comprobará el CIF frente a la expresión REGEX.
-        Matcher matcher = pattern.matcher(cif.getCifNumberWithLetters().toUpperCase());
+        Matcher matcher = pattern.matcher(cif.getCompleteNumber().toUpperCase());
 
         // Devuelvo el resultado de '.matches', que nos indica si coincide o no.
         result = matcher.matches();

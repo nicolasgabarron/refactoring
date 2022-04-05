@@ -4,7 +4,6 @@ import com.nicogbdev.refactor.bien.interfaces.IdentificationValidate;
 import com.nicogbdev.refactor.bien.models.IdentificationDocument;
 import com.nicogbdev.refactor.bien.models.NIE;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -54,7 +53,7 @@ public class NieValidator implements IdentificationValidate {
      * @return TRUE: Es correcto / FALSE: No es correcto.
      */
     private boolean isNieLengthValid(NIE nie) {
-        return nie.getNieNumberWithLetters().length() == 9;
+        return nie.getCompleteNumber().length() == 9;
     }
 
     /**

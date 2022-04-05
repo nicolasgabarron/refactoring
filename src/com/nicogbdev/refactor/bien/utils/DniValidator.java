@@ -5,7 +5,6 @@ import com.nicogbdev.refactor.bien.interfaces.IdentificationValidate;
 import com.nicogbdev.refactor.bien.models.DNI;
 import com.nicogbdev.refactor.bien.models.IdentificationDocument;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -133,7 +132,7 @@ public class DniValidator implements IdentificationValidate {
     private boolean isDNILengthValid(DNI dni) {
         boolean result = false;
 
-        if (dni.getDniNumberWithLetter().length() == 9) result = true;
+        if (dni.getCompleteNumber().length() == 9) result = true;
 
         return result;
     }
