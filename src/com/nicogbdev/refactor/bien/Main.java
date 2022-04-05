@@ -20,9 +20,8 @@ class  Main
         CifValidator cifValidator = (CifValidator) validateFactory.getCifValidator();
         NieValidator nieValidator = (NieValidator) validateFactory.getNieValidator();
 
-        System.out.println("=====================");
-        System.out.println("Vamos a refactorizar!");
-        System.out.println("=====================");
+        // Escribo mensaje de bienvenida:
+        printMessage();
 
         // creamos un DNI correcto
         DNI dniCorrecto = new DNI("11111111H", null);
@@ -53,5 +52,11 @@ class  Main
         CIF cifIncorrecto = new CIF("W9696294A", null);
         Boolean esValidoCifIncorrecto = cifValidator.validate(cifIncorrecto);
         System.out.println( "CIF " + cifIncorrecto.getCompleteNumber() + " es: " + esValidoCifIncorrecto.toString());
+    }
+
+    private static void printMessage(){
+        System.out.println("=====================");
+        System.out.println("Vamos a refactorizar!");
+        System.out.println("=====================");
     }
 }

@@ -1,7 +1,6 @@
 package com.nicogbdev.refactor.bien.models;
 
 import java.util.Date;
-import java.util.Locale;
 
 public class NIE extends IdentificationDocument {
     // Propiedades.

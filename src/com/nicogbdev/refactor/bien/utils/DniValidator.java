@@ -61,27 +61,6 @@ public class DniValidator implements IdentificationValidate {
     }
 
     /**
-     * Método que un String dado, siendo este la parte numérica de un DNI,
-     * comprueba si es numérica al 100% y no contiene ninguna letra.
-     * <p>
-     * En dicho caso, saltará una excepción y el método retornará FALSE.
-     *
-     * @param numericPartDni Supuesta parte numérica del DNI.
-     * @return TRUE: Es numérico / FALSE: No es numérico.
-     */
-    private boolean isNumeric(String numericPartDni) {
-        if (numericPartDni == null) {
-            return false;
-        }
-        try {
-            double d = Double.parseDouble(numericPartDni);
-        } catch (NumberFormatException nfe) {
-            return false;
-        }
-        return true;
-    }
-
-    /**
      * Método que obtiene la letra del DNI y comprueba que sea válida.
      * También comprueba que dicha letra sea correcta y esté contemplado en las posibles letras
      * que puede tener un DNI.
