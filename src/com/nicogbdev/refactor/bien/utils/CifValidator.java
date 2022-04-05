@@ -16,7 +16,7 @@ public class CifValidator implements IdentificationValidate {
     // Propiedades.
     private List<Character> firstCharacters = Arrays.asList('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'U', 'V', 'W');
     private CIFLastCharType cifLastCharType;
-    public static CifValidator cifValidator;
+    private static CifValidator cifValidator;
 
     /**
      * Método que crea una instancia de clase en caso de no existir y la devuelve

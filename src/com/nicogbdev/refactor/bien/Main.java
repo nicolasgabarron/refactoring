@@ -1,6 +1,7 @@
 package com.nicogbdev.refactor.bien;
 
 import com.nicogbdev.refactor.bien.enums.DniType;
+import com.nicogbdev.refactor.bien.factories.IDValidateFactory;
 import com.nicogbdev.refactor.bien.models.CIF;
 import com.nicogbdev.refactor.bien.models.DNI;
 import com.nicogbdev.refactor.bien.models.IdentificationDocument;
@@ -13,10 +14,12 @@ class  Main
 {
     public static void main(String args[])
     {
-        // Instancias de Validadores.
-        DniValidator dniValidator = DniValidator.getInstance();
-        CifValidator cifValidator = CifValidator.getInstance();
-        NieValidator nieValidator = NieValidator.getInstance();
+        // Instancia de la factoría de Validadores.
+        IDValidateFactory validateFactory = new IDValidateFactory();
+
+        DniValidator dniValidator = (DniValidator) validateFactory.getDniValidator();
+        CifValidator cifValidator = (CifValidator) validateFactory.getCifValidator();
+        NieValidator nieValidator = (NieValidator) validateFactory.getNieValidator();
 
         System.out.println("=====================");
         System.out.println("Vamos a refactorizar!");
